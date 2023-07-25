@@ -7,8 +7,21 @@ async function getBooking(userId: number) {
   });
 }
 
+async function createBooking(userId: number, roomId: number) {
+  return prisma.booking.create({
+    data: {
+      roomId,
+      userId,
+    },
+    select: {
+      id: true,
+    },
+  });
+}
+
 const bookingRepository = {
   getBooking,
+  createBooking,
 };
 
 export default bookingRepository;

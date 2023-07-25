@@ -8,7 +8,15 @@ async function getBooking(req: AuthenticatedRequest, res: Response) {
   res.status(httpStatus.OK).send(booking);
 }
 
+async function createBooking(req: AuthenticatedRequest, res: Response) {
+  const { userId } = req;
+  const { roomId } = req.body;
+  const booking = await bookingService.createBooking(userId, roomId);
+  res.status(httpStatus.OK).send(booking);
+}
+
 const bookingController = {
   getBooking,
+  createBooking,
 };
 export default bookingController;
